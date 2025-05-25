@@ -1,0 +1,82 @@
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInReleaseBuilds') ?: 'false').toBoolean()
+def hermesEnabled = (findProperty('hermesEnabled') ?: 'true').toBoolean()
+
+android {
+    namespace 'com.anonymous.vite_react_shadcn_ts'
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    ndkVersion rootProject.ext.ndkVersion
+
+    defaultConfig {
+        applicationId 'com.anonymous.vite_react_shadcn_ts'
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "0.0.0"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file('my-release-key.keystore')
+            storePassword 'your-store-password'
+            keyAlias 'your-key-alias'
+            keyPassword 'your-key-password'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
+        }
+    }
+
+    androidResources {
+        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!.scc:!CVS:!thumbs.db:!picasa.ini:!~'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+react {
+    entryFile = file("${rootDir}/index.js")
+    reactNativeDir = file("${rootDir}/../node_modules/react-native")
+    codegenDir = file("${rootDir}/../node_modules/@react-native/codegen")
+    enableBundleCompression = (findProperty('android.enableBundleCompression') ?: 'false').toBoolean()
+    cliFile = file("${rootDir}/../node_modules/@expo/cli/build/index.js")
+    bundleCommand = "export:embed"
+    autolinkLibrariesWithApp()
+}
+
+dependencies {
+    implementation("com.facebook.react:react-android")
+
+    def isGifEnabled = (findProperty('expo.gif.enabled') ?: 'false') == 'true'
+    def isWebpEnabled = (findProperty('expo.webp.enabled') ?: 'false') == 'true'
+    def isWebpAnimatedEnabled = (find

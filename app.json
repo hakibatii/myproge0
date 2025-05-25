@@ -1,0 +1,11 @@
+{
+  "android": {
+    "package": "com.anonymous.vite_react_shadcn_ts"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.viteReactShadcnTs",
+    "config": {
+      "googleMapsApiKey": "YOUR_IOS_API_KEY_HERE"
+    }
+  }
+}
