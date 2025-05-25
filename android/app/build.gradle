@@ -8,16 +8,15 @@ def hermesEnabled = (findProperty('hermesEnabled') ?: 'true').toBoolean()
 android {
     namespace 'com.anonymous.vite_react_shadcn_ts'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-    ndkVersion rootProject.ext.ndkVersion
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId 'com.anonymous.vite_react_shadcn_ts'
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
-        versionName "0.0.0"
+        versionName "0.0.1"
     }
 
     signingConfigs {
@@ -28,8 +27,8 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file('my-release-key.keystore')
-            storePassword 'your-store-password'
+            storeFile file('my-release-key.keystore') // تأكد من وجود هذا الملف
+            storePassword 'your-store-password'       // غيّر القيم لكلمات السر الصحيحة
             keyAlias 'your-key-alias'
             keyPassword 'your-key-password'
         }
@@ -41,16 +40,16 @@ android {
         }
         release {
             signingConfig signingConfigs.release
-            shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
+            shrinkResources true
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            crunchPngs false
         }
     }
 
     packagingOptions {
         jniLibs {
-            useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
+            useLegacyPackaging false
         }
     }
 
@@ -62,13 +61,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 react {
     entryFile = file("${rootDir}/index.js")
     reactNativeDir = file("${rootDir}/../node_modules/react-native")
     codegenDir = file("${rootDir}/../node_modules/@react-native/codegen")
-    enableBundleCompression = (findProperty('android.enableBundleCompression') ?: 'false').toBoolean()
+    enableBundleCompression = false
     cliFile = file("${rootDir}/../node_modules/@expo/cli/build/index.js")
     bundleCommand = "export:embed"
     autolinkLibrariesWithApp()
@@ -79,4 +82,21 @@ dependencies {
 
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: 'false') == 'true'
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: 'false') == 'true'
-    def isWebpAnimatedEnabled = (find
+    def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: 'false') == 'true'
+
+    if (isGifEnabled) {
+        implementation("com.facebook.fresco:animated-gif:2.6.0")
+    }
+    if (isWebpEnabled) {
+        implementation("com.facebook.fresco:webpsupport:2.6.0")
+    }
+    if (isWebpAnimatedEnabled) {
+        implementation("com.facebook.fresco:animated-webp:2.6.0")
+    }
+
+    if (hermesEnabled) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation("org.webkit:android-jsc:+")
+    }
+}

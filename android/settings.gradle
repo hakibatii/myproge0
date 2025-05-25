@@ -3,32 +3,39 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        // مستودعات React Native و Expo
         maven { url("$rootDir/../node_modules/react-native/android") }
         maven { url("$rootDir/../node_modules/expo-modules-core/android/maven") }
     }
 
-    def reactNativeGradlePlugin = new File(
-            providers.exec {
-                workingDir(rootDir)
-                commandLine("node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })")
-            }.standardOutput.asText.get().trim()
-    ).getParentFile().absolutePath
+    // تضمين إضافات React Native
+    def reactNativeGradlePluginPath = new ByteArrayOutputStream()
+    exec {
+        workingDir rootDir
+        commandLine "node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"
+        standardOutput = reactNativeGradlePluginPath
+    }
+    def reactNativeGradlePlugin = new File(reactNativeGradlePluginPath.toString().trim()).getParentFile().absolutePath
     includeBuild(reactNativeGradlePlugin)
 
-    def expoPluginsPath = new File(
-            providers.exec {
-                workingDir(rootDir)
-                commandLine("node", "--print", "require.resolve('expo-modules-autolinking/package.json', { paths: [require.resolve('expo/package.json')] })")
-            }.standardOutput.asText.get().trim(),
-            "../android/expo-gradle-plugin"
-    ).absolutePath
+    // تضمين إضافات Expo
+    def expoPluginsPathOutput = new ByteArrayOutputStream()
+    exec {
+        workingDir rootDir
+        commandLine "node", "--print", "require.resolve('expo-modules-autolinking/package.json', { paths: [require.resolve('expo/package.json')] })"
+        standardOutput = expoPluginsPathOutput
+    }
+    def expoPluginsPath = new File(expoPluginsPathOutput.toString().trim(), "../android/expo-gradle-plugin").absolutePath
     includeBuild(expoPluginsPath)
 }
 
+// تفعيل إعدادات autolinking من Expo
 plugins {
     id("expo-autolinking-settings")
 }
 
+// اسم المشروع
 rootProject.name = "vite_react_shadcn_ts"
 
+// تضمين التطبيق
 include(":app")

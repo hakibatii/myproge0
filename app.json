@@ -7,5 +7,10 @@
     "config": {
       "googleMapsApiKey": "YOUR_IOS_API_KEY_HERE"
     }
+  },
+  "extra": {
+    "eas": {
+      "projectId": "ca41de6e-cb89-45ba-9c01-45da3fcae9a6"
+    }
   }
 }
