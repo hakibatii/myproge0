@@ -13,7 +13,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.2.0") // تم التحديث من 7.4.1
+        classpath("com.android.tools.build:gradle:7.4.1") // تم التحديث من 7.4.1
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         // لا تنسَ إضافة أي plugin إضافي هنا إن احتاجت مكتباتك ذلك
     }
