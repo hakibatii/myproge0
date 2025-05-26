@@ -6,16 +6,16 @@ buildscript {
         minSdkVersion = 21
         compileSdkVersion = 33
         targetSdkVersion = 33
-        kotlinVersion = "1.9.0" // تم التحديث من 1.8.0
+        kotlinVersion = "1.9.10" // تم تحديثه لضمان التوافق مع gradle 7.5 و AGP 7.4.1
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.1") // تم التحديث من 7.4.1
+        classpath("com.android.tools.build:gradle:7.4.1") // متوافق مع gradle 7.5
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        // لا تنسَ إضافة أي plugin إضافي هنا إن احتاجت مكتباتك ذلك
+        // يمكنك إضافة أي إضافات هنا عند الحاجة (مثل Firebase أو غيره)
     }
 }
 
@@ -25,3 +25,5 @@ allprojects {
         mavenCentral()
     }
 }
+
+// هذه الأقسام ليست ضرورية هنا ولكن تأكد من وجود ملفات gradle في android/app أيضاً
