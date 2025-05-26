@@ -1,34 +1,28 @@
 {
   "expo": {
-    "name": "myproge0",
-    "slug": "myproge0",
+    "name": "triiip2",
+    "slug": "triiip2",
     "version": "1.0.0",
-    "sdkVersion": "52.0.0",
     "orientation": "portrait",
-    "platforms": ["android"],
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "sdkVersion": "52.0.0",
+    "platforms": ["ios", "android", "web"],
+    "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["*/"],
-    "android": {
-      "package": "com.anonymous.vite_react_shadcn_ts"
-    },
+    "assetBundlePatterns": [
+      "*/"
+    ],
     "ios": {
-      "bundleIdentifier": "com.anonymous.viteReactShadcnTs",
-      "config": {
-        "googleMapsApiKey": "YOUR_IOS_API_KEY_HERE"
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
       }
     },
-    "extra": {
-      "eas": {
-        "projectId": "ca41de6e-cb89-45ba-9c01-45da3fcae9a6"
-      }
+    "web": {
+      "favicon": "./assets/favicon.png"
     }
   }
 }

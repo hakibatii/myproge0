@@ -2,20 +2,20 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "33.0.0"
+        buildToolsVersion = "34.0.0"           // محدثة لأحدث نسخة مستقرة
         minSdkVersion = 21
-        compileSdkVersion = 33
-        targetSdkVersion = 33
-        kotlinVersion = "1.9.10" // تم تحديثه لضمان التوافق مع gradle 7.5 و AGP 7.4.1
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        kotlinVersion = "1.9.10"               // متوافق مع Gradle 8.2.1 و AGP 8.2.1
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.1") // متوافق مع gradle 7.5
+        classpath("com.android.tools.build:gradle:8.2.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        // يمكنك إضافة أي إضافات هنا عند الحاجة (مثل Firebase أو غيره)
+        // أضف أي إضافات أخرى تحتاجها هنا مثل Firebase
     }
 }
 
@@ -26,4 +26,6 @@ allprojects {
     }
 }
 
-// هذه الأقسام ليست ضرورية هنا ولكن تأكد من وجود ملفات gradle في android/app أيضاً
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
