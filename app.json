@@ -3,7 +3,7 @@
     "name": "myproge0",
     "slug": "myproge0",
     "version": "1.0.0",
-    "sdkVersion": "49.0.0",
+    "sdkVersion": "52.0.0",
     "orientation": "portrait",
     "platforms": ["android"],
     "icon": "./assets/icon.png",
