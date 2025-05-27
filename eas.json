@@ -8,6 +8,7 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug",
         "experimental": {
           "gradleVersion": "8.2.1"
         }
@@ -17,6 +18,7 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk",
+        "gradleCommand": ":app:assemblePreview",
         "experimental": {
           "gradleVersion": "8.2.1"
         }

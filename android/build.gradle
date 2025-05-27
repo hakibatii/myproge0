@@ -1,12 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext {
-        buildToolsVersion = "34.0.0"           // محدثة لأحدث نسخة مستقرة
-        minSdkVersion = 21
-        compileSdkVersion = 34
-        targetSdkVersion = 34
-        kotlinVersion = "1.9.10"               // متوافق مع Gradle 8.2.1 و AGP 8.2.1
+        kotlin_version = '1.9.10'
     }
     repositories {
         google()
@@ -14,8 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:8.2.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        // أضف أي إضافات أخرى تحتاجها هنا مثل Firebase
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
@@ -24,8 +17,4 @@ allprojects {
         google()
         mavenCentral()
     }
-}
-
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
 }
