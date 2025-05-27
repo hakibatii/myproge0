@@ -4,9 +4,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "build:android": "expo run:android"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -40,6 +41,19 @@
       "reactNativeDirectoryCheck": {
         "listUnknownPackages": false
       }
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-image-picker",
+      "expo-av",
+      "expo-linear-gradient",
+      "expo-media-library",
+      "expo-file-system"
+    ],
+    "android": {
+      "package": "com.anonymous.myproge0",
+      "versionCode": 1,
+      "permissions": []
     }
   },
   "private": true

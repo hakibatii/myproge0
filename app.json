@@ -5,7 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "sdkVersion": "52.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,7 +23,8 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.abdokay.triiip2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
