@@ -1,7 +1,3 @@
 <resources>
-    <!-- اسم التطبيق -->
-    <string name="app_name">triiip2</string>
-
-    <!-- يمكنك إضافة المزيد من السلاسل هنا لاحقًا -->
-    <!-- <string name="welcome_message">مرحبًا بك في التطبيق!</string> -->
+  <string name="app_name">triiip2</string>
 </resources>

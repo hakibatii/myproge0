@@ -9,7 +9,6 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    // غيّرنا هذا الخيار لتجنب مشاكل التبعيات غير الموجودة في المستودعات الرئيسية
     repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
@@ -20,10 +19,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = 'triiip2'
-
-// تضمين تطبيقك الرئيسي
 include(":app")
-
-// تضمين expo-modules-core بشكل يدوي
-include(":expo-modules-core")
-project(":expo-modules-core").projectDir = new File(rootDir, "../node_modules/expo-modules-core/android")
