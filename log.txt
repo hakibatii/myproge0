@@ -1,0 +1,16 @@
+env: load .env
+env: export VITE_API_URL VITE_OTHER_KEY VITE_PAYPAL_CLIENT_ID VITE_FACE_API_ENDPOINT VITE_FACE_API_KEY
+› Installing using npm
+> npm install
+
+up to date, audited 1211 packages in 3s
+
+151 packages are looking for funding
+  run `npm fund` for details
+
+6 vulnerabilities (2 low, 4 high)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
